@@ -127,4 +127,53 @@ public class CampoTest {
 
         assertTrue(campo22.isAberto() && campo11.isFechado());
     }
+
+    @Test
+    public void testeToStringMarcado() {
+        Campo campo22 = new Campo(2,2);
+        campo22.alternarMarcacao();
+
+        System.out.println(campo22);
+        assertTrue(campo22.isFechado());
+    }
+
+    @Test
+    public void testeToStringAbertoEMinado() {
+        Campo campo22 = new Campo(2,2);
+        campo22.abrir();
+        campo22.minar();
+
+        System.out.println(campo22);
+        assertTrue(campo22.isMinado() && campo22.isAberto());
+    }
+
+    @Test
+    public void testeToStringAbertoComMinasNaVizinhanca() {
+        Campo campo22 = new Campo(2,2);
+        campo22.abrir();
+
+        Campo campo12 = new Campo(1,2);
+        campo22.adicionarVizinho(campo12);
+        campo12.minar();
+
+        System.out.println(campo22);
+        assertTrue(campo22.isAberto() && campo22.minasNaVizinanca() > 0);
+    }
+
+    @Test
+    public void testeToStringAberto() {
+        Campo campo22 = new Campo(2,2);
+        campo22.abrir();
+
+        System.out.println(campo22);
+        assertTrue(campo22.isAberto());
+    }
+
+    @Test
+    public void testeToStringElse() {
+        Campo campo22 = new Campo(2,2);
+
+        System.out.println(campo22);
+        assertFalse(campo22.isAberto() && campo22.isMinado() && campo22.minasNaVizinanca() > 0);
+    }
 }
