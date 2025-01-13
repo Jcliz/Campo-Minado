@@ -1,5 +1,7 @@
 package jcliz.github.com.modelo.modelo;
 
+import jcliz.github.com.modelo.excecao.ExplosaoException;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -38,5 +40,33 @@ public class Campo {
         } else {
             return false;
         }
+    }
+
+    public void alternarMarcacao() {
+        if (!aberto) {
+            marcado = !marcado;
+        }
+    }
+
+    public boolean abrir() {
+        if (!aberto && !marcado) {
+            aberto = true;
+
+            if (minado) {
+                throw new ExplosaoException();
+            }
+
+            if (vizinhancaSegura()) {
+                vizinhos.forEach(v -> v.abrir());
+            }
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+    public boolean vizinhancaSegura() {
+        return vizinhos.stream().noneMatch(v -> v.minado);
     }
 }
