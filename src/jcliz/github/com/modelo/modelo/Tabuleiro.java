@@ -2,6 +2,7 @@ package jcliz.github.com.modelo.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Tabuleiro {
     private int linhas;
@@ -37,6 +38,23 @@ public class Tabuleiro {
     }
 
     public void sortearMinas() {
-        //para a aplicação da lógica
+        long minasArmadas;
+        Predicate<Campo> minado = Campo::isMinado;
+
+        do {
+            minasArmadas = campos.stream().filter(minado).count();
+            int aleatorio = (int) (Math.random() * campos.size());
+            campos.get(aleatorio).minar();
+
+        } while (minasArmadas < minas);
+    }
+
+    public boolean objetivoAlcancado() {
+        return campos.stream().allMatch(Campo::objetivoAlcancado);
+    }
+
+    public void reiniciar() {
+        campos.forEach(Campo::reiniciar);
+        sortearMinas();
     }
 }
