@@ -1,7 +1,7 @@
-package jcliz.github.com;
+package jcliz.github.com.modelo;
 
-import jcliz.github.com.modelo.excecao.ExplosaoException;
-import jcliz.github.com.modelo.modelo.Campo;
+import jcliz.github.com.excecao.ExplosaoException;
+import jcliz.github.com.modelo.Campo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

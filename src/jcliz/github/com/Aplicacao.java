@@ -1,6 +1,6 @@
-package jcliz.github.com.modelo;
+package jcliz.github.com;
 
-import jcliz.github.com.modelo.modelo.Tabuleiro;
+import jcliz.github.com.modelo.Tabuleiro;
 
 public class Aplicacao {
     public static void main(String[] args) {

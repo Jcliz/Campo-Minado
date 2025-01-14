@@ -1,4 +1,4 @@
-package jcliz.github.com.modelo.modelo;
+package jcliz.github.com.modelo;
 
 import java.util.ArrayList;
 import java.util.List;

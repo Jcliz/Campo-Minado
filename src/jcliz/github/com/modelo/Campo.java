@@ -1,6 +1,6 @@
-package jcliz.github.com.modelo.modelo;
+package jcliz.github.com.modelo;
 
-import jcliz.github.com.modelo.excecao.ExplosaoException;
+import jcliz.github.com.excecao.ExplosaoException;
 
 import java.util.List;
 import java.util.ArrayList;
