@@ -117,13 +117,15 @@ public class Campo {
         return !isAberto();
     }
 
-//    public int getLinha() {
-//        return linha;
-//    }
-//
-//    public int getColuna() {
-//        return coluna;
-//    }
+/*
+    public int getLinha() {
+        return linha;
+    }
+
+    public int getColuna() {
+        return coluna;
+    }
+*/
 
     public boolean isMinado() {
         return minado;
