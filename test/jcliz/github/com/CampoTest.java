@@ -129,7 +129,7 @@ public class CampoTest {
     }
 
     @Test
-    public void testeToStringMarcado() {
+    void testeToStringMarcado() {
         Campo campo22 = new Campo(2,2);
         campo22.alternarMarcacao();
 
@@ -138,7 +138,7 @@ public class CampoTest {
     }
 
     @Test
-    public void testeToStringAbertoEMinado() {
+    void testeToStringAbertoEMinado() {
         Campo campo22 = new Campo(2,2);
         campo22.abrir();
         campo22.minar();
@@ -148,7 +148,7 @@ public class CampoTest {
     }
 
     @Test
-    public void testeToStringAbertoComMinasNaVizinhanca() {
+    void testeToStringAbertoComMinasNaVizinhanca() {
         Campo campo22 = new Campo(2,2);
         campo22.abrir();
 
@@ -161,7 +161,7 @@ public class CampoTest {
     }
 
     @Test
-    public void testeToStringAberto() {
+    void testeToStringAberto() {
         Campo campo22 = new Campo(2,2);
         campo22.abrir();
 
@@ -170,10 +170,38 @@ public class CampoTest {
     }
 
     @Test
-    public void testeToStringElse() {
+    void testeToStringElse() {
         Campo campo22 = new Campo(2,2);
 
         System.out.println(campo22);
         assertFalse(campo22.isAberto() && campo22.isMinado() && campo22.minasNaVizinanca() > 0);
+    }
+
+    @Test
+    void testeoObjetivoAlcancado1() {
+        Campo campo22 = new Campo(2,2);
+        campo22.minar();
+        campo22.alternarMarcacao();
+
+        assertTrue(campo22.objetivoAlcancado());
+    }
+
+    @Test
+    void testeoObjetivoAlcancado2() {
+        Campo campo22 = new Campo(2,2);
+        campo22.abrir();
+
+        assertTrue(campo22.objetivoAlcancado());
+    }
+
+    @Test
+    void testeReiniciar() {
+        Campo campo22 = new Campo(2,2);
+        campo22.minar();
+        campo22.alternarMarcacao();
+
+        campo22.reiniciar();
+
+        assertFalse(campo22.isAberto() && campo22.isMinado() && campo22.isMarcado());
     }
 }
