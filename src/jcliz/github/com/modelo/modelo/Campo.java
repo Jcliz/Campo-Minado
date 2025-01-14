@@ -117,7 +117,6 @@ public class Campo {
         return !isAberto();
     }
 
-/*
     public int getLinha() {
         return linha;
     }
@@ -125,7 +124,7 @@ public class Campo {
     public int getColuna() {
         return coluna;
     }
-*/
+
 
     public boolean isMinado() {
         return minado;
