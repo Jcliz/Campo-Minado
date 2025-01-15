@@ -90,4 +90,16 @@ public class Tabuleiro {
         campos.forEach(Campo::reiniciar);
         sortearMinas();
     }
+
+    public int getLinhas() {
+        return linhas;
+    }
+
+    public int getColunas() {
+        return colunas;
+    }
+
+    public List<Campo> getCampos() {
+        return campos;
+    }
 }
