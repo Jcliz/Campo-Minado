@@ -91,6 +91,7 @@ public class Tabuleiro {
         sortearMinas();
     }
 
+    /*
     public int getLinhas() {
         return linhas;
     }
@@ -98,6 +99,7 @@ public class Tabuleiro {
     public int getColunas() {
         return colunas;
     }
+    */
 
     public List<Campo> getCampos() {
         return campos;

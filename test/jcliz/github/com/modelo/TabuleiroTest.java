@@ -54,4 +54,26 @@ public class TabuleiroTest {
         assertFalse(tabuleiro.getCampos()
                 .stream().anyMatch(Campo::isMarcado));
     }
+
+    @Test
+    void testeObjetivoAlcancado() {
+        tabuleiro.getCampos().stream()
+                .filter(Campo::isMinado)
+                .forEach(c -> tabuleiro.marcar(c.getLinha(), c.getColuna()));
+
+        tabuleiro.getCampos().stream()
+                .filter(c -> !c.isMinado())
+                .forEach(Campo::abrir);
+
+        assertTrue(tabuleiro.objetivoAlcancado());
+    }
+
+    @Test
+    void testeObjetivoNaoAlcancado() {
+        tabuleiro.getCampos().stream()
+                .filter(c -> !c.isMinado())
+                .forEach(Campo::abrir);
+
+        assertFalse(tabuleiro.objetivoAlcancado());
+    }
 }

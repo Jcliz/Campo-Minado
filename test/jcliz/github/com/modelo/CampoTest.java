@@ -148,7 +148,7 @@ public class CampoTest {
     void testeToStringAbertoComMinasNaVizinhanca() {
         campo.abrir();
 
-        Campo campo12 = new Campo(1,2);
+        Campo campo12 = new Campo(2,3);
         campo.adicionarVizinho(campo12);
         campo12.minar();
 
