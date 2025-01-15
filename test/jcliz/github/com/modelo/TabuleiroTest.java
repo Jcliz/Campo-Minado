@@ -3,6 +3,9 @@ package jcliz.github.com.modelo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TabuleiroTest {
@@ -75,5 +78,30 @@ public class TabuleiroTest {
                 .forEach(Campo::abrir);
 
         assertFalse(tabuleiro.objetivoAlcancado());
+    }
+
+    @Test
+    void testeReiniciar() {
+        boolean minasAntes = tabuleiro.getCampos().stream()
+                .anyMatch(Campo::isMinado);
+
+
+        tabuleiro.getCampos().getFirst().abrir();
+        tabuleiro.marcar(1, 1);
+
+        tabuleiro.reiniciar();
+
+        assertTrue(tabuleiro.getCampos().stream()
+                .allMatch
+                        (campo -> !campo.isAberto() && !campo.isMarcado()));
+
+        Set<Integer> minasDepois = new HashSet<>();
+        for (int i = 0; i < tabuleiro.getCampos().size(); i++) {
+            if (tabuleiro.getCampos().get(i).isMinado()) {
+                minasDepois.add(i);
+            }
+        }
+
+        assertNotEquals(minasAntes,  minasDepois);
     }
 }
