@@ -41,4 +41,46 @@ public class TabuleiroConsole {
             leitor.close();
         }
     }
+
+    private void cicloDoJogo() {
+        try {
+            while (!tabuleiro.objetivoAlcancado()){
+                System.out.println(tabuleiro);
+
+                String digitado = capturarValorDigitado("Digite (x, y): ");
+
+                Iterator<Integer> xy = Arrays.stream(digitado.split(","))
+                        .map(e -> Integer.parseInt(e.trim())).iterator();
+
+                digitado = capturarValorDigitado("""
+                        [1] - Abrir
+                        [2] - (Des)Marcar
+                        
+                        Digite sair para fechar o jogo.
+                        """);
+
+                if ("1".equals(digitado)) {
+                    tabuleiro.abrir(xy.next(), xy.next());
+                } else if ("2".equals(digitado)) {
+                    tabuleiro.marcar(xy.next(), xy.next());
+                }
+            }
+
+            System.out.println("Você ganhou!");
+
+        } catch (ExplosaoException e) {
+            System.out.println("Perdeu!");
+        }
+    }
+
+    private String capturarValorDigitado(String texto) {
+        System.out.print(texto);
+        String digitado = leitor.nextLine();
+
+        if ("sair".equalsIgnoreCase(digitado)) {
+            throw new SairException();
+        }
+
+        return digitado;
+    }
 }
