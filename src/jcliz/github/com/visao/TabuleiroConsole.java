@@ -66,6 +66,7 @@ public class TabuleiroConsole {
                 }
             }
 
+            System.out.println(tabuleiro);
             System.out.println("Você ganhou!");
 
         } catch (ExplosaoException e) {
