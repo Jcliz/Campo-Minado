@@ -129,51 +129,45 @@ public class CampoTest {
 
     @Test
     void testeToStringMarcado() {
-        Campo campo22 = new Campo(2,2);
-        campo22.alternarMarcacao();
+        campo.alternarMarcacao();
 
-        System.out.println(campo22);
-        assertTrue(campo22.isFechado());
+        System.out.println(campo);
+        assertTrue(campo.isFechado());
     }
 
     @Test
     void testeToStringAbertoEMinado() {
-        Campo campo22 = new Campo(2,2);
-        campo22.abrir();
-        campo22.minar();
+        campo.abrir();
+        campo.minar();
 
-        System.out.println(campo22);
-        assertTrue(campo22.isMinado() && campo22.isAberto());
+        System.out.println(campo);
+        assertTrue(campo.isMinado() && campo.isAberto());
     }
 
     @Test
     void testeToStringAbertoComMinasNaVizinhanca() {
-        Campo campo22 = new Campo(2,2);
-        campo22.abrir();
+        campo.abrir();
 
         Campo campo12 = new Campo(1,2);
-        campo22.adicionarVizinho(campo12);
+        campo.adicionarVizinho(campo12);
         campo12.minar();
 
-        System.out.println(campo22);
-        assertTrue(campo22.isAberto() && campo22.minasNaVizinanca() > 0);
+        System.out.println(campo);
+        assertTrue(campo.isAberto() && campo.minasNaVizinanca() > 0);
     }
 
     @Test
     void testeToStringAberto() {
-        Campo campo22 = new Campo(2,2);
-        campo22.abrir();
+        campo.abrir();
 
-        System.out.println(campo22);
-        assertTrue(campo22.isAberto());
+        System.out.println(campo);
+        assertTrue(campo.isAberto());
     }
 
     @Test
     void testeToStringElse() {
-        Campo campo22 = new Campo(2,2);
-
-        System.out.println(campo22);
-        assertFalse(campo22.isAberto() && campo22.isMinado() && campo22.minasNaVizinanca() > 0);
+        System.out.println(campo);
+        assertFalse(campo.isAberto() && campo.isMinado() && campo.minasNaVizinanca() > 0);
     }
 
     @Test
@@ -187,20 +181,18 @@ public class CampoTest {
 
     @Test
     void testeoObjetivoAlcancado2() {
-        Campo campo22 = new Campo(2,2);
-        campo22.abrir();
+        campo.abrir();
 
-        assertTrue(campo22.objetivoAlcancado());
+        assertTrue(campo.objetivoAlcancado());
     }
 
     @Test
     void testeReiniciar() {
-        Campo campo22 = new Campo(2,2);
-        campo22.minar();
-        campo22.alternarMarcacao();
+        campo.minar();
+        campo.alternarMarcacao();
 
-        campo22.reiniciar();
+        campo.reiniciar();
 
-        assertFalse(campo22.isAberto() && campo22.isMinado() && campo22.isMarcado());
+        assertFalse(campo.isAberto() && campo.isMinado() && campo.isMarcado());
     }
 }
