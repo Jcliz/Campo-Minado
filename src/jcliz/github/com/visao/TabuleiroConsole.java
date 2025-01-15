@@ -47,7 +47,9 @@ public class TabuleiroConsole {
             while (!tabuleiro.objetivoAlcancado()){
                 System.out.println(tabuleiro);
 
-                String digitado = capturarValorDigitado("Digite (x, y): ");
+                String digitado = capturarValorDigitado("""
+                        Digite (x, y) ou "sair":
+                        """);
 
                 Iterator<Integer> xy = Arrays.stream(digitado.split(","))
                         .map(e -> Integer.parseInt(e.trim())).iterator();
@@ -55,8 +57,6 @@ public class TabuleiroConsole {
                 digitado = capturarValorDigitado("""
                         [1] - Abrir
                         [2] - (Des)Marcar
-                        
-                        Digite sair para fechar o jogo.
                         """);
 
                 if ("1".equals(digitado)) {
@@ -69,6 +69,7 @@ public class TabuleiroConsole {
             System.out.println("Você ganhou!");
 
         } catch (ExplosaoException e) {
+            System.out.println(tabuleiro);
             System.out.println("Perdeu!");
         }
     }
