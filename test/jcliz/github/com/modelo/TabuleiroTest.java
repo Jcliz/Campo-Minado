@@ -20,11 +20,13 @@ public class TabuleiroTest {
 
     @Test
     void testeAbrir1() {
-        tabuleiro.abrir(1,1);
+        tabuleiro.abrir(1, 1);
 
         assertTrue(tabuleiro.getCampos().stream()
                 .anyMatch
-                        (c -> c.getLinha() == 1 && c.getColuna() == 1 && c.isAberto()));
+                        (c -> c.getLinha() == 1 &&
+                                c.getColuna() == 1 &&
+                                c.isAberto()));
     }
 
     @Test
@@ -33,5 +35,23 @@ public class TabuleiroTest {
 
         assertFalse(tabuleiro.getCampos().stream()
                 .anyMatch(Campo::isAberto));
+    }
+
+    @Test
+    void testeMarcar() {
+        tabuleiro.marcar(1,1);
+
+        assertTrue(tabuleiro.getCampos()
+                .stream().anyMatch(c -> c.getLinha() == 1 &&
+                        c.getColuna() == 1 &&
+                        c.isMarcado()));
+    }
+
+    @Test
+    void testMarcarInexistente() {
+        tabuleiro.marcar(8,8);
+
+        assertFalse(tabuleiro.getCampos()
+                .stream().anyMatch(Campo::isMarcado));
     }
 }
