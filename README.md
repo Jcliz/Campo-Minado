@@ -12,8 +12,8 @@
 - Pilares de POO
 
 ## Imagens:
-- Início de rodada: 
-
+- Início de rodada:
+  
 ![image](https://github.com/user-attachments/assets/9b2b1734-2425-4218-b1f0-13d1982efba9) 
 
 - Abrindo o tabuleiro: 
@@ -23,6 +23,11 @@
 - Derrota (bomba = *):
 
 ![image](https://github.com/user-attachments/assets/3ace7f63-82d9-4449-914a-9f0b3d45a05f)
+
+- Marcação de campo no tabuleiro (x):
+
+![image](https://github.com/user-attachments/assets/9130ceba-6e4d-400c-9946-932861907cf7)
+
 
 ## Requisitos:
 - Java 22
