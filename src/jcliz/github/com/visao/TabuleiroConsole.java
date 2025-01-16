@@ -18,6 +18,7 @@ public class TabuleiroConsole {
         executarJogo();
     }
 
+    //método que realiza a execução do jogo
     private void executarJogo() {
         try {
             boolean continuar = true;
@@ -30,6 +31,8 @@ public class TabuleiroConsole {
 
                 if ("n".equalsIgnoreCase(resposta)) {
                     continuar = false;
+
+                    //default = S
                 } else {
                     tabuleiro.reiniciar();
                 }
@@ -51,6 +54,7 @@ public class TabuleiroConsole {
                         Digite (x, y) ou "sair":
                         """);
 
+                //transforma nos números separados por vírgula em um array e logo em seguida em int
                 Iterator<Integer> xy = Arrays.stream(digitado.split(","))
                         .map(e -> Integer.parseInt(e.trim())).iterator();
 
@@ -60,6 +64,7 @@ public class TabuleiroConsole {
                         """);
 
                 if ("1".equals(digitado)) {
+                    //chama o primeiro numero e depois o segundo
                     tabuleiro.abrir(xy.next(), xy.next());
                 } else if ("2".equals(digitado)) {
                     tabuleiro.marcar(xy.next(), xy.next());
