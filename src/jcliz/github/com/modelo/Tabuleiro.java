@@ -18,6 +18,7 @@ public class Tabuleiro {
         this.colunas = colunas;
         this.minas = minas;
 
+        //inicia a geração dos atributos necessários
         gerarCampos();
         associarVizinhos();
         sortearMinas();
@@ -29,6 +30,7 @@ public class Tabuleiro {
 
         sb.append("    ");
         for (int c = 0; c < colunas; c++) {
+            //impressão dos índices de coluna
             sb.append(" ");
             sb.append(c);
             sb.append(" ");
@@ -39,11 +41,12 @@ public class Tabuleiro {
         int i = 0;
 
         for (int l = 0; l < linhas; l++) {
+            //impressão dos índices de linha
             sb.append(l);
             sb.append("   ");
             for (int c = 0; c < colunas; c++) {
                 sb.append(" ");
-                sb.append(campos.get(i));
+                sb.append(campos.get(i)); //printa o campo com o toString
                 sb.append(" ");
                 i++;
             }
@@ -55,9 +58,11 @@ public class Tabuleiro {
     public void abrir(int linha, int coluna) {
         try {
             campos.parallelStream()
-                .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
-                .findFirst()
-                .ifPresent(Campo::abrir);
+                    //filtra os campos para encontrar o desejado com os parametros
+                    .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
+                    .findFirst()
+                    //caso no método abrir a explosão ser jogada, cairá no catch
+                    .ifPresent(Campo::abrir);
         } catch (ExplosaoException e) {
             campos.forEach(c -> c.setAberto(true));
             throw e;
@@ -66,12 +71,14 @@ public class Tabuleiro {
 
     public void marcar(int linha, int coluna) {
         campos.parallelStream()
+                //filtra os campos para encontrar o desejado com os parametros
                 .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
                 .findFirst()
                 .ifPresent(Campo::alternarMarcacao);
     }
 
     public void gerarCampos() {
+        //geração de campos com uma geração de matriz
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
                 campos.add(new Campo(i, j));
@@ -80,6 +87,7 @@ public class Tabuleiro {
     }
 
     public void associarVizinhos() {
+        //percorre a matriz adicionando os vizinhos
         for (Campo c1 : campos) {
             for (Campo c2 : campos) {
                 c1.adicionarVizinho(c2);
@@ -89,6 +97,7 @@ public class Tabuleiro {
 
     public void sortearMinas() {
         long minasArmadas;
+        //predicado para a verificação se está minado ou nao
         Predicate<Campo> minado = Campo::isMinado;
 
         do {
@@ -99,10 +108,12 @@ public class Tabuleiro {
         } while (minasArmadas < minas);
     }
 
+    //retorna true se todos os campos tiveram seus objetivos alcançados
     public boolean objetivoAlcancado() {
         return campos.stream().allMatch(Campo::objetivoAlcancado);
     }
 
+    //reinicia o tabuleiro, ou seja, cada campo
     public void reiniciar() {
         campos.forEach(Campo::reiniciar);
         sortearMinas();
