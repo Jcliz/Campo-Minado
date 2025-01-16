@@ -9,6 +9,7 @@ public class Campo {
     private final int linha;
     private final int coluna;
 
+    //atributos de estado do campo
     private boolean aberto;
     private boolean minado;
     private boolean marcado;
@@ -26,11 +27,15 @@ public class Campo {
             return "x";
         } else if (aberto && minado) {
             return "*";
+
+            /* conta quantas minas existem em volta do
+            ponto selecionado e imprime no campo */
         } else if (aberto && minasNaVizinanca() > 0) {
             return Long.toString(minasNaVizinanca());
         } else if (aberto) {
             return " ";
         } else {
+            //campo sem nenhuma ação realizada
             return "?";
         }
     }
@@ -40,6 +45,7 @@ public class Campo {
         boolean colunaDiferente = coluna != vizinho.coluna;
         boolean diagonal = linhaDiferente && colunaDiferente;
 
+        //caso a diferença entre os dois resulte em 1 eles são vizinhos
         int deltaLinha = Math.abs(linha - vizinho.linha);
         int deltaColuna = Math.abs(coluna - vizinho.coluna);
         int deltaGeral = deltaLinha + deltaColuna;
@@ -67,6 +73,7 @@ public class Campo {
         if (!aberto && !marcado) {
             aberto = true;
 
+            //joga a excessão de explosão caso o campos esteja minado
             if (minado) {
                 throw new ExplosaoException();
             }
@@ -81,6 +88,7 @@ public class Campo {
         }
     }
 
+    //checa com uma stream se nenhum dos vizinhos presentes na lista está minado
     public boolean vizinhancaSegura() {
         return vizinhos.stream().noneMatch(v -> v.minado);
     }
@@ -95,6 +103,7 @@ public class Campo {
         return desvendado || protegido;
     }
 
+    //conta quantas minas estão em volta do campo com uma stream
     public long minasNaVizinanca() {
         return vizinhos.stream().filter(v -> v.minado).count();
     }
