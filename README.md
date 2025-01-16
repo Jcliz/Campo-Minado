@@ -23,3 +23,6 @@
 - Derrota (bomba = *):
 
 ![image](https://github.com/user-attachments/assets/3ace7f63-82d9-4449-914a-9f0b3d45a05f)
+
+## Requisitos:
+- Java 22
